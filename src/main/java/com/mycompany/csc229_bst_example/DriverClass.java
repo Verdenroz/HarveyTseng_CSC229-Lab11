@@ -10,8 +10,10 @@ package com.mycompany.csc229_bst_example;
  */
 public class DriverClass {
     public static void main(String a[]) {
- 
+        
+        
         BinarySearchTree bst = new BinarySearchTree();
+        
         bst.insert(8);
         bst.insert(10);
         bst.insert(14);
@@ -21,9 +23,26 @@ public class DriverClass {
         bst.insert(1);
         bst.insert(4);
         bst.insert(13);
+        
+        
+        /*
+                                            8
+                                3                   10
+                            1        6                    14
+                                 4      7            13
+        */
+        
         System.out.println("\n-------------------");
         System.out.println("In Order Traversal");
         bst.inOrderTraversal();
+        
+        System.out.println("\n-------------------");
+        System.out.println("Pre Order Traversal");
+        bst.preOrderTraversal();
+        
+        System.out.println("\n-------------------");
+        System.out.println("Height of BST");
+        System.out.println(bst.findHeight());
         
         bst.print();
     }
