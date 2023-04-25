@@ -60,7 +60,7 @@ public class BinarySearchTree {
             return;
         
         doInOrder(root.getLeft());
-        System.out.println(root.getData());
+        System.out.println(root.getData() + " Depth: " + this.getDepth(root));
         doInOrder(root.getRight());
     }
     
@@ -73,7 +73,7 @@ public class BinarySearchTree {
         if(root == null)
             return;
         
-        System.out.println(root.getData());
+        System.out.println(root.getData() + " Depth: " + this.getDepth(root));
         doPreOrder(root.getLeft());
         doPreOrder(root.getRight());
     }
@@ -113,29 +113,41 @@ public class BinarySearchTree {
         return height - 1;
     }
     
-    
-
-    
-
+   
     public int getDepth(BstNode node) {
         //ToDo 4: complete getDepth of a node
-        int depth = 0;
+        LinkedList<BstNode> list = new LinkedList<BstNode>();
         
-        //base case
-        if(root.getData() == node.getData())
-            return depth;
-        //go to the right if data is greater
-        if(node.getData() > root.getData()){
-            depth++;
-            return getDepth(root.getRight());
+        if(this.root == null){
+            return 0;
         }
-        //go to the left if the data is less thans
-        if(node.getData() < root.getData()){
+        
+        //start from the root
+        list.add(this.root);
+        int depth = 0;
+        int numNodes = list.size();
+        while(true){
+            numNodes = list.size();
+            
+            //check each level if it contains the node
+            if(list.contains(node))
+                break;
+            
             depth++;
-            return getDepth(root.getLeft());
+            
+            //add the nodes of the next level and remove current nodes
+            for(int i = 0; i < numNodes; i++){
+                BstNode newNode = list.peek();
+                list.remove();
+                if(newNode.getLeft() != null){
+                    list.add(newNode.getLeft());
+                }
+                if(newNode.getRight() != null){
+                    list.add(newNode.getRight());
+                }
+            }
         }
-        //return -1 if node is not found
-        return -1;
+        return depth;
     }
     
    public void print() {
