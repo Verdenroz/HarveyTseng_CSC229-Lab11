@@ -27,7 +27,7 @@ public class BinarySearchTree {
     }
 
     private BstNode insertNode(BstNode root, Integer data) {
-
+        
         BstNode tmpNode = null;
         System.out.print(" ->" + root.getData());
         if (root.getData() >= data) {
@@ -79,7 +79,7 @@ public class BinarySearchTree {
     }
             
     public Integer findHeight() {
-        // ToDo 3: Find the height of a tree (largest depth of a node)\
+        // ToDo 3: Find the height of a tree (largest depth of a node)
         LinkedList<BstNode> nodes = new LinkedList<BstNode>();
         
         if(this.root == null){
@@ -120,21 +120,43 @@ public class BinarySearchTree {
     public int getDepth(BstNode node) {
         //ToDo 4: complete getDepth of a node
         int depth = 0;
-        if(this.root == node){
+        
+        if(root.getData() == node.getData() || (root.getLeft() == null && root.getRight() == null))
             return depth;
-        }
-        if(node.getData() > this.root.getData())
+        
+        if(node.getData() > root.getData()){
+            depth++;
             return getDepth(root.getRight());
-        if(node.getData() < this.root.getData())
+        }
+        if(node.getData() < root.getData()){
+            depth++;
             return getDepth(root.getLeft());
-        return 0;
+        }
+        
+        return -1;
     }
     
    public void print() {
        System.out.println("\n==== BST Print ===== \n");
         //print("", root, false);
         // ToDo 5: complete the print of the BST
+        
+        //Print what? I got confused
+        BstNode leftSide = root;
+        BstNode rightSide = root;
+        while(leftSide.getLeft() != null){
+            leftSide = leftSide.getLeft();
+            System.out.print(leftSide.getData() + " ");
+            
+        }
+        
+        while(rightSide.getRight() != null){
+            rightSide = rightSide.getRight();
+            System.out.print(rightSide.getData() + " ");
+            
+        }
+        
+        
     }
-
 
 }

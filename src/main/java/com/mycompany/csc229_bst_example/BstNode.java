@@ -33,10 +33,10 @@ public class BstNode {
     public void setRight(BstNode right) {
         this.right = right;
     }
-
+    
     public Integer getData() {
         return data;
     }
-
+    
 
 }
