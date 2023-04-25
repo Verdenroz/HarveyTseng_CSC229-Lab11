@@ -55,28 +55,84 @@ public class BinarySearchTree {
     }
 
     private void doInOrder(BstNode root) {
-
         // ToDo 1: complete InOrder Traversal 
+        if(root == null)
+            return;
+        
+        doInOrder(root.getLeft());
+        System.out.println(root.getData());
+        doInOrder(root.getRight());
     }
-        public void preOrderTraversal() {
+    
+    public void preOrderTraversal() {
         doPreOrder(this.root);
         // ToDo 2: complete the pre-order travesal . 
     }
-
-    public Integer findHeight() {
-
-        // ToDo 3: Find the height of a tree
+    
+    private void doPreOrder(BstNode root){
+        if(root == null)
+            return;
+        
+        System.out.println(root.getData());
+        doPreOrder(root.getLeft());
+        doPreOrder(root.getRight());
     }
+            
+    public Integer findHeight() {
+        // ToDo 3: Find the height of a tree (largest depth of a node)\
+        LinkedList<BstNode> nodes = new LinkedList<BstNode>();
+        
+        if(this.root == null){
+            return 0;
+        }
+        
+        //start from the root
+        nodes.add(this.root);
+        int height = 0;
+        int numNodes = nodes.size();
+        while(true){
+            numNodes = nodes.size();
+            //break when the current level has no nodes
+            if(numNodes == 0)
+                break;
+            height++;
+            
+            //add the nodes of the next level and remove current nodes
+            for(int i = 0; i < numNodes; i++){
+                BstNode newNode = nodes.peek();
+                nodes.remove();
+                if(newNode.getLeft() != null){
+                    nodes.add(newNode.getLeft());
+                }
+                if(newNode.getRight() != null){
+                    nodes.add(newNode.getRight());
+                }
+            }
+        }
+        //returns the height of the last level before 0 nodes
+        return height - 1;
+    }
+    
+    
 
     
 
     public int getDepth(BstNode node) {
-        //ToDo 4: complete getDepth of a node 
+        //ToDo 4: complete getDepth of a node
+        int depth = 0;
+        if(this.root == node){
+            return depth;
+        }
+        if(node.getData() > this.root.getData())
+            return getDepth(root.getRight());
+        if(node.getData() < this.root.getData())
+            return getDepth(root.getLeft());
+        return 0;
     }
     
    public void print() {
        System.out.println("\n==== BST Print ===== \n");
-        print("", root, false);
+        //print("", root, false);
         // ToDo 5: complete the print of the BST
     }
 
