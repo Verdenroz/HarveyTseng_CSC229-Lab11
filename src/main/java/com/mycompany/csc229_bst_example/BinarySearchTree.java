@@ -113,10 +113,7 @@ public class BinarySearchTree {
         return height - 1;
     }
     
-    
-
-    
-
+   
     public int getDepth(BstNode node) {
         //ToDo 4: complete getDepth of a node
         LinkedList<BstNode> list = new LinkedList<BstNode>();
