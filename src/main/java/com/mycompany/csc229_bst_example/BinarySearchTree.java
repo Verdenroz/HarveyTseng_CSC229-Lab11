@@ -121,18 +121,20 @@ public class BinarySearchTree {
         //ToDo 4: complete getDepth of a node
         int depth = 0;
         
-        if(root.getData() == node.getData() || (root.getLeft() == null && root.getRight() == null))
+        //base case
+        if(root.getData() == node.getData())
             return depth;
-        
+        //go to the right if data is greater
         if(node.getData() > root.getData()){
             depth++;
             return getDepth(root.getRight());
         }
+        //go to the left if the data is less thans
         if(node.getData() < root.getData()){
             depth++;
             return getDepth(root.getLeft());
         }
-        
+        //return -1 if node is not found
         return -1;
     }
     
