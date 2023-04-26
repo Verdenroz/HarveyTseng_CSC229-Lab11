@@ -155,19 +155,35 @@ public class BinarySearchTree {
         //print("", root, false);
         // ToDo 5: complete the print of the BST
         
-        //Print what? I got confused
-        BstNode leftSide = root;
-        BstNode rightSide = root;
-        while(leftSide.getLeft() != null){
-            leftSide = leftSide.getLeft();
-            System.out.print(leftSide.getData() + " ");
-            
+        LinkedList<BstNode> nodes = new LinkedList<BstNode>();
+        
+        if(this.root == null){
+            return;
         }
         
-        while(rightSide.getRight() != null){
-            rightSide = rightSide.getRight();
-            System.out.print(rightSide.getData() + " ");
+        //start from the root
+        nodes.add(this.root);
+        int height = 0;
+        int numNodes = nodes.size();
+        while(true){
+            numNodes = nodes.size();
+            //break when the current level has no nodes
+            if(numNodes == 0)
+                break;
+            height++;
             
+            //add the nodes of the next level and remove current nodes
+            for(int i = 0; i < numNodes; i++){
+                BstNode newNode = nodes.peek();
+                System.out.print(newNode.getData() + " ");
+                nodes.remove();
+                if(newNode.getLeft() != null){
+                    nodes.add(newNode.getLeft());
+                }
+                if(newNode.getRight() != null){
+                    nodes.add(newNode.getRight());
+                }
+            }
         }
         
         
